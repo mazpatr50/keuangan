@@ -212,7 +212,7 @@ try{sb=window.supabase.createClient(SB_URL,SB_KEY)}catch(x){}
 function map(r){return {id:r.id,t:r.tipe,d:r.tanggal,k:r.kategori,n:Number(r.nominal),e:r.keterangan}}
 function gagal(e){alert("Error: "+((e&&e.message)||e))}
 function tampil(on){$("lg").style.display=on?"none":"flex";$("app").style.display=on?"":"none"}
-async function muat(){var r=await sb.from("transaksi").select("*").order("tanggal",{ascending:false}).limit(5000);if(r.error)return gagal(r.error);data=r.data.map(map);render()}
+async function muat(){sb.auth.getUser().then(function(u){if(u.data&&u.data.user)$("logout").textContent="Keluar · "+u.data.user.email});var r=await sb.from("transaksi").select("*").order("tanggal",{ascending:false}).limit(5000);if(r.error)return gagal(r.error);data=r.data.map(map);render()}
 async function keluar(){try{await sb.auth.signOut()}catch(x){}$("pw").type="password";$("eye").textContent="\ud83d\udc41\ufe0f";data=[];render();tampil(false)}
 $("lgbtn").onclick=async function(){var b=$("lgbtn");$("lgerr").textContent="";
  if(!sb||SB_URL.indexOf("ISI_")==0){$("lgerr").textContent="Isi SB_URL dan SB_KEY di index.html dulu.";return}
