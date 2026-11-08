@@ -190,9 +190,9 @@ $("save").onclick=async function(){var n=+$("nom").value;if(!n||n<=0){alert("Isi
  b.disabled=false;if(r.error)return gagal(r.error);
  data.push(map(r.data));$("nom").value="";$("ket").value="";render()};
 $("tgl").value=iso(new Date());setTipe("in");render();
-var SB_URL="ISI_PROJECT_URL_SUPABASE";
-var SB_KEY="ISI_ANON_PUBLIC_KEY";
-var ADMIN_EMAIL="admin@target100jt.com";
+var SB_URL="https://qbnimjthgjzitgnnolzf.supabase.co";
+var SB_KEY="sb_publishable_n13n-_DcfMyHoTGsPKjxBA_eP6vqn84";
+var ADMIN_EMAIL="admin@mazpatra50.com";
 var sb=null;
 try{sb=window.supabase.createClient(SB_URL,SB_KEY)}catch(x){}
 function map(r){return {id:r.id,t:r.tipe,d:r.tanggal,k:r.kategori,n:Number(r.nominal),e:r.keterangan}}
